@@ -1,0 +1,8 @@
+<p>Which state is {{address}} in?:</p>
+<select *ngIf="false" [(ngModel)]="selectedAnswer">
+  <option *ngFor="let key of answers">{{key}}</option>
+</select>
+
+<div class="btnGrid">
+  <button *ngFor="let key of answers" (click)="chooseAnswer(key)">{{key}}</button>
+</div>
