@@ -12,6 +12,7 @@ import { UserRegistrationComponent } from './viewes/user-registration/user-regis
 import { UserLoginComponent } from './viewes/user-login/user-login.component';
 import { HeaderComponent } from './viewes/header/header.component';
 import { DashboardComponent } from './viewes/home/sub-components/dashboard/dashboard.component';
+import { FooterComponent } from './viewes/footer/footer.component';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { DashboardComponent } from './viewes/home/sub-components/dashboard/dashb
     CommonModule,
     FormsModule
   ],
-  declarations: [LoginComponent, HomeComponent, UserRegistrationComponent, UserLoginComponent, HeaderComponent, DashboardComponent],
+  declarations: [LoginComponent, HomeComponent, UserRegistrationComponent, UserLoginComponent, HeaderComponent, DashboardComponent, FooterComponent],
   providers: [
     HttpReqsService,
     AuthenticationService,
@@ -30,7 +31,8 @@ import { DashboardComponent } from './viewes/home/sub-components/dashboard/dashb
     HomeComponent,
     UserRegistrationComponent,
     UserLoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class FrameworkModule { }
