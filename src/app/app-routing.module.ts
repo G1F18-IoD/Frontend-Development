@@ -9,10 +9,11 @@ import { AuthenticationService } from './modules/framework/services/authenticati
 
 const routes: Routes = [
   { path: 'chris-norwegian-states', component: GuessStatePracticeComponent, canActivate: [AuthenticationService] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthenticationService] },
   { path: 'register', component: UserRegistrationComponent },
   { path: 'login', component: UserLoginComponent },
 
-  { path: '**', component: HomeComponent }
+  { path: '**', component: UserLoginComponent }
 ];
 
 @NgModule({

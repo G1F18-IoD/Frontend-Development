@@ -1,0 +1,11 @@
+label {
+    float: left;
+}
+
+button {
+    float: right;
+}
+
+.register-btn {
+    margin-right: 5px;
+}
