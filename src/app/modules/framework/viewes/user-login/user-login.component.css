@@ -2,3 +2,9 @@
     margin-top: 20px;
     width: 25%;
 }
+
+@media (max-width: 800px) {
+    .login-div {
+        width: 100%;
+    }
+}
