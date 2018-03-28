@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  public list = [['Connections','10'],['Speed','10'],['Altitude','10'],['Battery','10']];
+
   constructor() { }
 
   ngOnInit() {

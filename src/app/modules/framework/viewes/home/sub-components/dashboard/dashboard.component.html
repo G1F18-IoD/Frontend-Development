@@ -1,12 +1,8 @@
 <div>
-  <div class="dashboard-grid" class="center-div">
-    <div class="grid-connected">Connected</div>
-    <div class="connected-value"></div>
-    <div class="grid-speed">Speed</div>
-    <div class="speed-value"></div>
-    <div class="grid-altitude">Altitude</div>
-    <div class="altitude-value"></div>
-    <div class="grid-battery">Battery</div>
-    <div class="battery-value"></div>
+  <div class="grid-container dashboard-grid center-div">
+    <ng-template ngFor let-item [ngForOf]="list" let-i="index">
+      <div class="grid-item">{{item[0]}}</div>
+      <div class="grid-item">{{item[1]}}</div>
+    </ng-template>
   </div>
 </div>
