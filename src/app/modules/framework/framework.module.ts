@@ -13,6 +13,10 @@ import { UserLoginComponent } from './viewes/user-login/user-login.component';
 import { HeaderComponent } from './viewes/header/header.component';
 import { DashboardComponent } from './viewes/home/sub-components/dashboard/dashboard.component';
 import { FooterComponent } from './viewes/footer/footer.component';
+import { PropercasePipe } from './services/propercase.pipe';
+import { FlightControlComponent } from './viewes/home/sub-components/flight-control/flight-control.component';
+import { DroneSelectorComponent } from './viewes/home/sub-components/drone-selector/drone-selector.component';
+import { LogOverviewComponent } from './viewes/home/sub-components/log-overview/log-overview.component';
 
 
 @NgModule({
@@ -20,7 +24,7 @@ import { FooterComponent } from './viewes/footer/footer.component';
     CommonModule,
     FormsModule
   ],
-  declarations: [LoginComponent, HomeComponent, UserRegistrationComponent, UserLoginComponent, HeaderComponent, DashboardComponent, FooterComponent],
+  declarations: [LoginComponent, HomeComponent, UserRegistrationComponent, UserLoginComponent, HeaderComponent, DashboardComponent, FooterComponent, PropercasePipe, FlightControlComponent, DroneSelectorComponent, LogOverviewComponent],
   providers: [
     HttpReqsService,
     AuthenticationService,

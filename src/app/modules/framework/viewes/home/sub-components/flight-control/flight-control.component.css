@@ -1,0 +1,12 @@
+.dashboard-grid{
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-evenly;
+}
+
+.grid-item{
+    font-size: 15px;
+    text-align: center;
+    padding: 10px;
+    height: 40px;
+    border-radius: 4px;
+}

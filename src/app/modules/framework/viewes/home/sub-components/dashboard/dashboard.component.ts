@@ -7,11 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  public list = [['Connections','10'],['Speed','10'],['Altitude','10'],['Battery','10']];
+  public buttonRowHeaders = ['flight-control','drones','logs'];
+  public connection = "no connection";
+
+  public state = 0;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public setState(_state) {
+    this.state = _state;
   }
 
 }

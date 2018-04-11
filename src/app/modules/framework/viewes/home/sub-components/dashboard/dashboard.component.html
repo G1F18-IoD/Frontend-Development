@@ -1,8 +1,34 @@
+<!-- Connection bar -->
 <div>
-  <div class="grid-container dashboard-grid center-div">
-    <ng-template ngFor let-item [ngForOf]="list" let-i="index">
-      <div class="grid-item">{{item[0]}}</div>
-      <div class="grid-item">{{item[1]}}</div>
-    </ng-template>
+  <div class="flex-container dashboard-div center-div">
+    <div class="connection-glyph">
+      <span class="glyphicon glyphicon-signal"></span>
+      <label class="connection-label">{{connection | propercase}}</label>
+    </div>
+    <div class="off-btn">
+      <button class="form-btn off-btn">
+        <span class="glyphicon glyphicon-off"></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Button row -->
+<div class="grid-container btn-row-grid button-row center-div">
+  <button *ngFor="let button of buttonRowHeaders; let i = index;" class="form-btn row-btn" (click)="setState(i)">{{button | propercase}}</button>
+</div>
+
+<!-- Selected component -->
+<div>
+  <div class="dashboard-div center-div">
+    <div *ngIf="state == 0">
+      <app-flight-control></app-flight-control>
+    </div>
+    <div *ngIf="state == 1">
+      <app-drone-selector></app-drone-selector>
+    </div>
+    <div *ngIf="state == 2">
+      <app-log-overview></app-log-overview>
+    </div>
   </div>
 </div>
