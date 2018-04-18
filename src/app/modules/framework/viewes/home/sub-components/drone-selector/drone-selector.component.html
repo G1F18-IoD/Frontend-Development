@@ -1,14 +1,16 @@
 <div>
+  <button class="form-sub-btn selector-row-btn" (click)="refresh()"><span class="glyphicon glyphicon-refresh"></span></button>
+
   <table class="table table-striped table-bordered">
     <tr>
       <th *ngFor="let header of headers">
         {{header | propercase}}
       </th>
     </tr>
-    <tr *ngFor="let drone of drones">
-      <td>{{drone['port']}}</td>
+    <tr *ngFor="let drone of availableDrones;">
+      <td>{{drone['id']}}</td>
       <td>{{drone['ip']}}</td>
-      <td><button class="form-btn">Connect</button></td>
+      <td><button class="form-sub-btn">Connect</button></td>
     </tr>
   </table>
 </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpDefined } from '../../../../interfaces/http-defined';
+import { HttpReqsService } from '../../../../framework-export-barrel';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,13 +14,17 @@ export class DashboardComponent implements OnInit {
 
   public state = 0;
 
-  constructor() { }
+  constructor(private httpReqs: HttpReqsService) { }
 
   ngOnInit() {
   }
 
   public setState(_state) {
     this.state = _state;
+  }
+
+  public setConnection() {
+    
   }
 
 }

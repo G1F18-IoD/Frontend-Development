@@ -5,7 +5,7 @@
 
 .dashboard-div {
     background-color: whitesmoke;
-    border: 2px solid rgb(84, 82, 212);
+    border: 2px solid #0658aa;
     border-radius: 4px;
     width: 50%;
     padding: 10px;
@@ -38,4 +38,8 @@
     width: 100%;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
+}
+
+.tab-selected {
+    opacity: 0.5;
 }

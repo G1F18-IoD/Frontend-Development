@@ -18,21 +18,28 @@
     font-size: 14px;
 }
 
-.form-btn {
+.form-btn, .form-sub-btn {
     min-width: 100px;
     height: 35px;
     border-radius: 4px;
-    background-color: rgb(84, 82, 212);
     color: white;
     border: 0;
     font-size: 14px;
+}
+
+.form-btn {
+    background-color: #0658AA;
+}
+
+.form-sub-btn {
+    background-color: #696D51;
 }
 
 .form-label {
     font-size: 14px;
 }
 
-.form-btn:hover {
+.form-btn:hover, .form-sub-btn:hover {
     opacity: 0.5;
     cursor: pointer;
 }

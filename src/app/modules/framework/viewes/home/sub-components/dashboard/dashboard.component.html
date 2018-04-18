@@ -6,7 +6,7 @@
       <label class="connection-label">{{connection | propercase}}</label>
     </div>
     <div class="off-btn">
-      <button class="form-btn off-btn">
+      <button class="form-btn off-btn" (click)="setConnection()">
         <span class="glyphicon glyphicon-off"></span>
       </button>
     </div>
@@ -15,7 +15,8 @@
 
 <!-- Button row -->
 <div class="grid-container btn-row-grid button-row center-div">
-  <button *ngFor="let button of buttonRowHeaders; let i = index;" class="form-btn row-btn" (click)="setState(i)">{{button | propercase}}</button>
+  <button *ngFor="let button of buttonRowHeaders; let i = index;" class="form-btn row-btn" [ngClass]="{ 'tab-selected': state == i }"
+    (click)="setState(i)">{{button | propercase}}</button>
 </div>
 
 <!-- Selected component -->
