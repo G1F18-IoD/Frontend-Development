@@ -1,10 +1,10 @@
 <!-- Top console -->
 <div class="main-screen-div">
   <div id="flight-console" class="console-div">
-    <label *ngFor="let element of commands" class="command-label">{{element}}</label>
+    <label *ngFor="let element of commands; let i = index;" id="{{uniqID}}+{{i}}" class="command-label" [innerHTML]="element"></label>
   </div>
   <hr class="console-seperator">
-  <label class="white">> </label> <input type="text" class="console-input" [(ngModel)]="currentCommand" (keyup.enter)="$event.keyCode == 13 ? enterCommand(currentCommand) : null">
+  <label class="white">> </label> <input type="text" class="console-input" [(ngModel)]="currentCommand" (keyup.enter)="$event.keyCode == 13 ? enterCommand(currentCommand) : null" autofocus>
 </div>
 
 <div class="main-container">

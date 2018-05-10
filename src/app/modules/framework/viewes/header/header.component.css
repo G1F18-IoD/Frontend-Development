@@ -24,3 +24,8 @@ header {
     cursor: pointer;
     opacity: 0.5;
 }
+
+.account-bar {
+    float: right;
+    color: white;
+}

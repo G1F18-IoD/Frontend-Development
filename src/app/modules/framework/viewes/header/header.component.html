@@ -2,4 +2,7 @@
   <div class="header-menubar">
     <span (click)="home()" class="glyphicon glyphicon-home"></span>
   </div>
+  <div *ngIf="globalService.isAuth()" class="account-bar">
+    <app-account-menu></app-account-menu>
+  </div>
 </header>

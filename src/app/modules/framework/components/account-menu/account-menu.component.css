@@ -1,0 +1,21 @@
+.account-menu-div {
+    font-size: 16px;
+    margin-top: 12px;
+    margin-right: 10px;
+}
+
+.username {
+    font-weight: normal;
+    margin-right: 10px;
+}
+
+.log-out-btn {
+    padding: 5px;
+    border: 1px solid white;
+    border-radius: 4px;
+    background: transparent;
+}
+
+.log-out-btn:hover {
+    opacity: 0.5;
+}

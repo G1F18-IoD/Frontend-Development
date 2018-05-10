@@ -7,8 +7,6 @@ export class GlobalService {
 
   constructor(private router: Router) { }
 
-
-
   public getToken(): JwtTokenPayload {
     if (this.isAuth()) {
       let token = localStorage.getItem('jwttoken');

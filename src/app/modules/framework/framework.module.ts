@@ -17,6 +17,7 @@ import { PropercasePipe } from './services/propercase.pipe';
 import { FlightControlComponent } from './viewes/home/sub-components/flight-control/flight-control.component';
 import { DroneSelectorComponent } from './viewes/home/sub-components/drone-selector/drone-selector.component';
 import { LogOverviewComponent } from './viewes/home/sub-components/log-overview/log-overview.component';
+import { AccountMenuComponent } from './components/account-menu/account-menu.component';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { LogOverviewComponent } from './viewes/home/sub-components/log-overview/
     CommonModule,
     FormsModule
   ],
-  declarations: [LoginComponent, HomeComponent, UserRegistrationComponent, UserLoginComponent, HeaderComponent, DashboardComponent, FooterComponent, PropercasePipe, FlightControlComponent, DroneSelectorComponent, LogOverviewComponent],
+  declarations: [LoginComponent, HomeComponent, UserRegistrationComponent, UserLoginComponent, HeaderComponent, DashboardComponent, FooterComponent, PropercasePipe, FlightControlComponent, DroneSelectorComponent, LogOverviewComponent, AccountMenuComponent],
   providers: [
     HttpReqsService,
     AuthenticationService,

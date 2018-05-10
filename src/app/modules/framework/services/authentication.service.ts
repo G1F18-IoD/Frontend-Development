@@ -45,7 +45,7 @@ export class AuthenticationService implements CanActivate {
 
   public logout() {
     localStorage.removeItem('jwttoken');
-    }
+  }
 
   canActivate() {
     if (this.globalService.isAuth()) {
