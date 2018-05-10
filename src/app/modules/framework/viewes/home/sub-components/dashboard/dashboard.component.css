@@ -6,8 +6,6 @@
 .dashboard-div {
     background-color: whitesmoke;
     border: 2px solid #0658aa;
-    border-radius: 4px;
-    width: 50%;
     padding: 10px;
     margin-bottom: 10px;
 }
@@ -36,10 +34,12 @@
 
 .row-btn {
     width: 100%;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
 }
 
 .tab-selected {
     opacity: 0.5;
+}
+
+.component-div {
+    margin-bottom: 70px;
 }

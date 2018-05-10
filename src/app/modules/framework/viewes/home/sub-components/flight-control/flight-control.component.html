@@ -1,6 +1,93 @@
-<div class="grid-container dashboard-grid control-grid">
-  <ng-template ngFor let-item [ngForOf]="list" let-i="index">
-    <div class="grid-item">{{item[0]}}</div>
-    <div class="grid-item">{{item[1]}}</div>
-  </ng-template>
+<!-- Top console -->
+<div class="main-screen-div">
+  <div id="flight-console" class="console-div">
+    <label *ngFor="let element of commands" class="command-label">{{element}}</label>
+  </div>
+  <hr class="console-seperator">
+  <label class="white">> </label> <input type="text" class="console-input" [(ngModel)]="currentCommand" (keyup.enter)="$event.keyCode == 13 ? enterCommand(currentCommand) : null">
+</div>
+
+<div class="main-container">
+  <!-- left instructional labels -->
+  <div class="left-instr-div align-text-right">
+    <label class="instr-label">
+      Throttle -
+      <span class="glyphicon glyphicon-menu-up"></span> /
+      <span class="glyphicon glyphicon-menu-down"></span>
+    </label>
+    <label class="instr-label">
+      Yaw -
+      <span class="glyphicon glyphicon-share-alt icon-flipped"></span> /
+      <span class="glyphicon glyphicon-share-alt"></span>
+    </label>
+  </div>
+
+  <div class="flex-container controls-container">
+
+    <!-- Left transmitter input -->
+    <div class="left-trans-div grid-container">
+      <div></div>
+      <button class="form-sub-btn ctrl-btn" title="Throttle high">
+        <span class="glyphicon glyphicon-menu-up"></span>
+        <p style="font-size: 8px">high</p>
+      </button>
+      <div></div>
+      <button class="form-sub-btn ctrl-btn" title="Yaw left">
+        <span class="glyphicon glyphicon-share-alt icon-flipped"></span>
+        <p style="font-size: 8px">left</p>
+      </button>
+      <div></div>
+      <button class="form-sub-btn ctrl-btn" title="Yaw right">
+        <span class="glyphicon glyphicon-share-alt"></span>
+        <p style="font-size: 8px">right</p>
+      </button>
+      <div></div>
+      <button class="form-sub-btn ctrl-btn" title="Throttle low">
+        <span class="glyphicon glyphicon-menu-down"></span>
+        <p style="font-size: 8px">low</p>
+      </button>
+      <div></div>
+    </div>
+
+    <span class="spacer"></span>
+
+    <!-- Right transmitter input -->
+    <div class="right-trans-div grid-container">
+      <div></div>
+      <button class="form-sub-btn ctrl-btn" title="Pitch forward">
+        <span class="glyphicon glyphicon-arrow-up"></span>
+        <p style="font-size: 8px">forward</p>
+      </button>
+      <div></div>
+      <button class="form-sub-btn ctrl-btn" title="Roll left">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        <p style="font-size: 8px">left</p>
+      </button>
+      <div></div>
+      <button class="form-sub-btn ctrl-btn" title="Roll right">
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <p style="font-size: 8px">right</p>
+      </button>
+      <div></div>
+      <button class="form-sub-btn ctrl-btn" title="Pitch backward">
+        <span class="glyphicon glyphicon-arrow-down"></span>
+        <p style="font-size: 8px">backward</p>
+      </button>
+      <div></div>
+    </div>
+  </div>
+
+  <!-- right instructional labels -->
+  <div class="right-instr-div">
+    <label class="instr-label">
+      <span class="glyphicon glyphicon-arrow-up"></span> /
+      <span class="glyphicon glyphicon-arrow-down"></span>
+      - Pitch
+    </label>
+    <label class="instr-label">
+      <span class="glyphicon glyphicon-arrow-left"></span> /
+      <span class="glyphicon glyphicon-arrow-right"></span>
+      - Roll
+    </label>
+  </div>
 </div>

@@ -10,3 +10,92 @@
     height: 40px;
     border-radius: 4px;
 }
+
+.left-trans-div, .right-trans-div {
+    position: relative;
+}
+
+.controls-container {
+    width: 400px;
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+.main-container, .controls-container {
+    display: flex;
+    justify-content: center;
+}
+
+.grid-container {
+    grid-template-columns: 50px 50px 50px;
+}
+
+.form-sub-btn {
+    min-width: unset;
+}
+
+.ctrl-btn {
+    width: 50px;
+}
+
+.spacer {
+    width: 15%;
+}
+
+.main-screen-div {
+    width: 300px;
+    height: 180px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    background-color: black;
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+
+.white {
+    color: white;
+}
+
+.instr-label {
+    width: 100%;
+}
+
+.left-instr-div {
+    margin-right: 10px;
+}
+
+.right-instr-div {
+    margin-left: 10px;
+}
+
+.left-instr-div, .right-instr-div {
+    margin-top: 57px;
+}
+
+/* console */ 
+.console-div {
+    min-height: 155px;
+    max-height: 155px;
+    overflow: auto;
+}
+
+.console-seperator {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border-top: 1px solid white;
+}
+
+.console-input {
+    background-color: transparent;
+    color: white;
+    border: none;
+    width: calc(100% - 10px);
+    outline: none;
+    text-transform: uppercase;
+}
+
+.command-label {
+    color: white;
+    width: 300px;
+    word-wrap: break-word;
+}

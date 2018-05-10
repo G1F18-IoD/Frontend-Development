@@ -7,11 +7,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlightControlComponent implements OnInit {
 
-  public list = [['Connections','10'],['Speed','10'],['Altitude','10'],['Battery','10']];
+  public commands = [];
+  public currentCommand;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public enterCommand(_string) {
+    this.commands.push("> " + _string.toUpperCase());
+
+    setTimeout(() => {
+      var elem = document.getElementById('flight-console');
+      elem.scrollTop = elem.scrollHeight;
+    }, 0);
+
+    this.commands.push(this.handleCommand(_string.toUpperCase()));
+
+    this.currentCommand = null;
+  }
+
+  private handleCommand(_input) {
+    switch(_input) {
+      case "ARM":
+        return "Arming sucessful";
+      default: 
+        return "UNKNOWN COMMAND - Are you sure you typed correctly?";
+    }
   }
 
 }

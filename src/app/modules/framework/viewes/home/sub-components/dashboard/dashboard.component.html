@@ -1,6 +1,6 @@
 <!-- Connection bar -->
 <div>
-  <div class="flex-container dashboard-div center-div">
+  <div class="flex-container dashboard-div center-div width-control">
     <div class="connection-glyph">
       <span class="glyphicon glyphicon-signal"></span>
       <label class="connection-label">{{connection | propercase}}</label>
@@ -21,7 +21,7 @@
 
 <!-- Selected component -->
 <div>
-  <div class="dashboard-div center-div">
+  <div class="dashboard-div center-div width-control component-div">
     <div *ngIf="state == 0">
       <app-flight-control></app-flight-control>
     </div>
