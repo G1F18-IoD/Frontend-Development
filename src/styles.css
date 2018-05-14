@@ -16,6 +16,7 @@
     padding-left: 5px;
     box-sizing: border-box;
     font-size: 14px;
+    color: black;
 }
 
 .form-btn, .form-sub-btn {
@@ -65,6 +66,13 @@
 
 .width-control {
     width: 50%;
+}
+
+.background-box {
+    background-color: #0658AA;
+    padding: 10px;
+    border-radius: 4px;
+    color: white;
 }
 
 @media only screen and (max-width: 1400px) {

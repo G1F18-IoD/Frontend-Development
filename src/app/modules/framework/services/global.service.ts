@@ -22,7 +22,7 @@ export class GlobalService {
     if (token) {
       let splitToken = token.split('.');
       let tokenPayload: JwtTokenPayload = JSON.parse(atob(splitToken[1]));
-      if (tokenPayload.expire < (Date.now() / 1000)) {
+      if (tokenPayload.exp < (Date.now() / 1000)) {
         return false;
       }
       return true;

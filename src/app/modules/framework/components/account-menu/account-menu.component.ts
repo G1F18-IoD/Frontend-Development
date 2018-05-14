@@ -23,7 +23,7 @@ export class AccountMenuComponent implements OnInit {
     this.auth = this.globalService.isAuth();
     if (this.auth) {
       let tokenPayload: JwtTokenPayload = this.globalService.getToken();
-      this.username = tokenPayload.username;
+      this.username = tokenPayload.unique_name;
     }
   }
 

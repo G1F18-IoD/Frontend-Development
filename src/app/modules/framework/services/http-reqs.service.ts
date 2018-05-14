@@ -31,6 +31,26 @@ export class HttpReqsService {
     return retval;
   }
 
+  sendGetRequest(reqOption: HttpDefined) {
+    let headers = new HttpHeaders();
+    //headers.append('authorization', this.authenticationService.getToken());
+    reqOption.data.jwt_token = localStorage.getItem('jwttoken');
+    let retval = this.http.get(reqOption.requestResource, { headers: headers, observe: 'response' }).map((response: HttpResponse<Object>) => {
+      if (reqOption.statusCode.indexOf(response.status) > -1) {
+        return response.body;
+      } else {
+        return Observable.throw("Unexpected answer: " + response.status + " : " + response.statusText + " : " + response.body);
+      }
+    }).catch((error: HttpResponse<any>) => {
+      if (reqOption.statusCode.indexOf(error.status) > -1) {
+        return error.body;
+      } else {
+        return Observable.throw("Unexpected error: " + error.status + " : " + error.statusText + " : " + error.body);
+      }
+    });
+    return retval;
+  }
+
 }
 
 //export class HttpDefined;

@@ -1,0 +1,5 @@
+<div *ngIf="messageToUser" [ngSwitch]="typeName">
+  <div *ngSwitchCase="'error'" class="box error-box">{{messageToUser | propercase}}</div>
+  <div *ngSwitchCase="'ok'" class="box ok-box">{{messageToUser | propercase}}</div>
+  <div *ngSwitchDefault class="box">Unknown error message type encountered.</div>
+</div>

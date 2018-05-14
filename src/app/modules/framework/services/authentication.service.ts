@@ -15,10 +15,10 @@ export class AuthenticationService implements CanActivate {
 
   public login(username, password) {
     let reqOption: HttpDefined = {
-      requestResource: 'http://skjoldtoft.dk/daniel/hab/index.php',
+      requestResource: 'http://tek-uas-stud0b.stud-srv.sdu.dk/api/auth/',
       data: {
-        class: "authentication",
-        method: "login", username: username, password: password
+        username: username,
+        password: password
       },
       statusCode: [200]
     };

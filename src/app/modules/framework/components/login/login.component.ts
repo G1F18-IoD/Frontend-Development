@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   public username;
   public password;
 
+  public error;
+
   constructor(
     private httpReqs: HttpReqsService,
     private authenticationService: AuthenticationService,
@@ -25,24 +27,40 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    let reqOption: HttpDefined = {
+      requestResource: 'http://tek-uas-stud0b.stud-srv.sdu.dk/api/flightplan',
+      data: {},
+      statusCode: [200]
+    };
+    this.httpReqs.sendGetRequest(reqOption).subscribe((data) => {
+
+    }, error => {
+      this.error = error;
+    });
   }
 
   public login() {
     this.authenticationService.login(this.username, this.password).subscribe(() => {
       this.loggedIn.emit(true);
       this.router.navigate(['/home']);
+    }, error => {
+      this.error = error;
     });
   }
 
   public register() {
     let reqOption: HttpDefined = {
-      requestResource: 'http://skjoldtoft.dk/daniel/hab/index.php',
-      data: {class: "authentication",
-      method: "register", username: this.username, password: this.password },
+      requestResource: 'http://tek-uas-stud0b.stud-srv.sdu.dk/api/auth/register',
+      data: {
+        username: this.username, 
+        password: this.password 
+      },
       statusCode: [200]
     };
     this.httpReqs.sendPostRequest(reqOption).subscribe((data) => {
       this.login();
+    }, error => {
+      this.error = error;
     });
   }
 

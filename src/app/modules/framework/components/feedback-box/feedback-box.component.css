@@ -1,0 +1,17 @@
+.box {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid;
+    font-size: 14px;
+    text-align: center;
+}
+
+.error-box {
+    color: red;
+    border-color: red;
+}
+
+.ok-box {
+    color: green;
+    border-color: green;
+}

@@ -18,6 +18,7 @@ import { FlightControlComponent } from './viewes/home/sub-components/flight-cont
 import { DroneSelectorComponent } from './viewes/home/sub-components/drone-selector/drone-selector.component';
 import { LogOverviewComponent } from './viewes/home/sub-components/log-overview/log-overview.component';
 import { AccountMenuComponent } from './components/account-menu/account-menu.component';
+import { FeedbackBoxComponent } from './components/feedback-box/feedback-box.component';
 
 
 @NgModule({
@@ -25,7 +26,21 @@ import { AccountMenuComponent } from './components/account-menu/account-menu.com
     CommonModule,
     FormsModule
   ],
-  declarations: [LoginComponent, HomeComponent, UserRegistrationComponent, UserLoginComponent, HeaderComponent, DashboardComponent, FooterComponent, PropercasePipe, FlightControlComponent, DroneSelectorComponent, LogOverviewComponent, AccountMenuComponent],
+  declarations: [
+    LoginComponent, 
+    HomeComponent, 
+    UserRegistrationComponent, 
+    UserLoginComponent, 
+    HeaderComponent, 
+    DashboardComponent, 
+    FooterComponent, 
+    PropercasePipe, 
+    FlightControlComponent, 
+    DroneSelectorComponent, 
+    LogOverviewComponent, 
+    AccountMenuComponent, 
+    FeedbackBoxComponent
+  ],
   providers: [
     HttpReqsService,
     AuthenticationService,

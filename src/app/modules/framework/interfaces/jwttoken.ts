@@ -4,7 +4,7 @@ export interface JwtTokenHeader {
 }
 
 export interface JwtTokenPayload { 
-    "user_id": number,
-    "username": string,
-    "expire": number
+    "primarysid": number,
+    "unique_name": string,
+    "exp": number
 }

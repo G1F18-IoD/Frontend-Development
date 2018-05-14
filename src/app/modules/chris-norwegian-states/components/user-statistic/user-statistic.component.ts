@@ -23,8 +23,8 @@ export class UserStatisticComponent implements OnInit {
     this.auth = this.globalService.isAuth();
     if (this.auth) {
       let tokenPayload: JwtTokenPayload = this.globalService.getToken();
-      this.username = tokenPayload.username;
-      this.userId = tokenPayload.user_id;
+      this.username = null;
+      this.userId = null;
       this.getStatistics();
     }
   }
@@ -66,8 +66,8 @@ export class UserStatisticComponent implements OnInit {
     this.auth = this.globalService.isAuth();
     if (this.auth) {
       let tokenPayload: JwtTokenPayload = this.globalService.getToken();
-      this.username = tokenPayload.username;
-      this.userId = tokenPayload.user_id;
+      this.username = null;
+      this.userId = null;
       this.getStatistics();
     }
   }

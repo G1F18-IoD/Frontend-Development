@@ -1,10 +1,18 @@
 <div>
-    <label class="form-label">Username</label>
-    <input class="form-input" type="text" [(ngModel)]="username" />
+    <div class="background-box">
+        <label class="form-label">Username</label>
+        <input class="form-input" type="text" [(ngModel)]="username" />
 
-    <label class="form-label">Password</label>
-    <input class="form-input" type="password" [(ngModel)]="password" />
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" [(ngModel)]="password" />
 
-    <button class="form-btn" (click)="login()">Login</button>
-    <button class="form-btn register-btn" (click)="register()">Register</button>
+        <div class="button-div">
+            <button class="form-btn" (click)="login()">Login</button>
+            <button class="form-btn register-btn" (click)="register()">Register</button>
+        </div>
+    </div>
+
+    <div class="error-div">
+        <app-feedback-box [messageToUser]="error" [typeName]="'error'"></app-feedback-box>
+    </div>
 </div>
