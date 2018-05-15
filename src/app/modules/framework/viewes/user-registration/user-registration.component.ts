@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpDefined, HttpReqsService, AuthenticationService } from '../../framework-export-barrel';
-//import { HttpDefined } from '../../interfaces/http-defined';
-//import { HttpReqsService } from '../../services/http-reqs.service';
 
 @Component({
   selector: 'app-user-registration',

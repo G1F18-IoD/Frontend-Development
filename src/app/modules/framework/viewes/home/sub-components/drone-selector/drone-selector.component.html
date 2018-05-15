@@ -1,11 +1,12 @@
 <div>
+  <!-- Drone overview table -->
   <table class="table table-striped">
     <tr>
       <th class="title-th padding-th" colspan="3">
         Drones
       </th>
       <th class="title-th">
-        <button class="form-header-btn float-right" (click)="refresh()">
+        <button class="form-header-btn float-right refresh-button" (click)="refresh()">
           Refresh 
           <span class="glyphicon glyphicon-refresh"></span>
         </button>
@@ -25,4 +26,7 @@
       </td>
     </tr>
   </table>
+
+  <!-- error box -->
+  <app-feedback-box [messageToUser]="error" [typeName]="'error'"></app-feedback-box>
 </div>
