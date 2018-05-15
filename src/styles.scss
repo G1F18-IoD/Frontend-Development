@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
+$primary-color: #4F4D53;
+$secondary-color: #E8BE02;
+$tertiary-color: lightslategray;
+
+/* ease of use */
 .center-div {
     margin: 0 auto;
 }
@@ -18,55 +23,6 @@
 
 .overflow {
     overflow: auto;
-}
-
-.form-input {
-    width: 100%;
-    height: 35px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    padding-left: 5px;
-    box-sizing: border-box;
-    font-size: 14px;
-    color: black;
-}
-
-.form-btn, .form-sub-btn {
-    min-width: 100px;
-    height: 35px;
-    color: white;
-    border: 0;
-    font-size: 14px;
-}
-
-.form-btn {
-    background-color: #4F4D53;
-}
-
-.form-sub-btn {
-    background-color: #4F4D53;
-}
-
-.form-header-btn {
-    color: white;
-    border: 1px solid white;
-    background-color: transparent;
-    padding: 5px;
-    border-radius: 4px;
-}
-
-.form-label {
-    font-size: 14px;
-}
-
-.form-btn:hover, .form-sub-btn:hover {
-    background-color: #E8BE02;
-    cursor: pointer;
-}
-
-.form-header-btn:hover {
-    opacity: 0.5;
-    cursor: pointer;
 }
 
 .grid-container {
@@ -89,12 +45,76 @@
     text-align: right;
 }
 
+/* standard formatting */
+.form-input {
+    width: 100%;
+    height: 35px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: black;
+}
+
+.form-sub-input {
+    width: 100%;
+    height: 25px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: black;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+    background-color: transparent;
+}
+
+.form-btn, .form-sub-btn {
+    min-width: 100px;
+    height: 35px;
+    color: white;
+    border: 0;
+    font-size: 14px;
+}
+
+.form-btn {
+    background-color: $primary-color;
+}
+
+.form-sub-btn {
+    background-color: $primary-color;
+}
+
+.form-header-btn {
+    color: white;
+    border: 1px solid white;
+    background-color: transparent;
+    padding: 5px;
+    border-radius: 4px;
+    font-weight: normal;
+}
+
+.form-label {
+    font-size: 14px;
+}
+
+.form-btn:hover, .form-sub-btn:hover {
+    background-color: $secondary-color;
+    cursor: pointer;
+}
+
+.form-header-btn:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
 .width-control {
     width: 50%;
 }
 
 .background-box {
-    background-color: #4F4D53;
+    background-color: $primary-color;
     padding: 10px;
     border-radius: 4px;
     color: white;
@@ -104,6 +124,27 @@
     .width-control {
         width: 100%;
     }
+}
+
+/* tables */
+table {
+    font-size: 11px;
+}
+
+.title-th {
+    background-color: $primary-color;
+    color: white;
+    font-size: 14px;
+}
+
+.table th, .table td {
+    border: none !important;
+}
+
+.sub-title-th {
+    background-color: $tertiary-color;
+    color: white;
+    font-size: 11px;
 }
 
 /* scrollbar */
@@ -116,7 +157,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #696D51; 
+    background: $secondary-color; 
 }
 
 ::-webkit-scrollbar-thumb:hover {

@@ -5,11 +5,11 @@ import { HttpReqsService } from '../../../../framework-export-barrel';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
 
-  public buttonRowHeaders = ['flight-control','drones','flight plans','logs'];
+  public buttonRowHeaders = ['flight-control','drones','flightplans','logs'];
   public connection = "no connection";
 
   public state = 0;

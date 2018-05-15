@@ -5,12 +5,13 @@ import { HttpReqsService } from '../../../../framework-export-barrel';
 @Component({
   selector: 'app-drone-selector',
   templateUrl: './drone-selector.component.html',
-  styleUrls: ['./drone-selector.component.css']
+  styleUrls: ['./drone-selector.component.scss']
 })
 export class DroneSelectorComponent implements OnInit {
 
-  public headers = ['port','ip','connect'];
+  public headers = ['ip','port','status','connect'];
   public availableDrones: any;
+  public error;
 
   constructor(private httpReqs: HttpReqsService) { }
 
@@ -19,7 +20,17 @@ export class DroneSelectorComponent implements OnInit {
   }
 
   private getDroneList() {
-    //Not implemented
+    let reqOption: HttpDefined = {
+      requestResource: 'http://tek-uas-stud0b.stud-srv.sdu.dk/api/rpiconnection',
+      data: {},
+      statusCode: [200]
+    };
+    this.httpReqs.sendGetRequest(reqOption).subscribe((data) => {
+      this.availableDrones = data;
+
+    }, error => {
+      this.error = error;
+    });
   }
 
   public refresh() {

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-flight-control',
   templateUrl: './flight-control.component.html',
-  styleUrls: ['./flight-control.component.css']
+  styleUrls: ['./flight-control.component.scss']
 })
 export class FlightControlComponent implements OnInit {
 

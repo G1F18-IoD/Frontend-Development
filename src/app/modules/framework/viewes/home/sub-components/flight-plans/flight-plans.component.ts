@@ -5,7 +5,7 @@ import { HttpReqsService } from '../../../../framework-export-barrel';
 @Component({
   selector: 'app-flight-plans',
   templateUrl: './flight-plans.component.html',
-  styleUrls: ['./flight-plans.component.css']
+  styleUrls: ['./flight-plans.component.scss']
 })
 export class FlightPlansComponent implements OnInit {
 
@@ -18,13 +18,14 @@ export class FlightPlansComponent implements OnInit {
   public newFlightplanName = "";
   public newFlightplanCommandsAmount = 1;
   public commandAmountToAdd = 1;
-  public maxAllowedCommands = 25;
+  public maxAllowedCommands = 0;
   public newFlightplanCommands = [];
 
   constructor(private httpReqs: HttpReqsService) { }
 
   ngOnInit() {
     this.getFlightplans();
+    this.getFlightplanSettings();
   }
 
   private getFlightplans() {
@@ -64,6 +65,20 @@ export class FlightPlansComponent implements OnInit {
       let formattedTime = day.substr(-2) + "-" + month.substr(-2) + "-" + year + " " + " " + hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
 
       this.flightplans[key].createdAt = formattedTime;
+    });
+  }
+
+  private getFlightplanSettings() {
+    let reqOption: HttpDefined = {
+      requestResource: 'http://tek-uas-stud0b.stud-srv.sdu.dk/api/flightplan/settings',
+      data: {},
+      statusCode: [200]
+    };
+    this.httpReqs.sendGetRequest(reqOption).subscribe((data) => {
+      this.maxAllowedCommands = data['commandPerFlightplanCount'];
+
+    }, error => {
+      this.error = error;
     });
   }
 

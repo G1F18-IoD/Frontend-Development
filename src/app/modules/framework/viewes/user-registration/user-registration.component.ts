@@ -7,7 +7,7 @@ import { HttpDefined, HttpReqsService, AuthenticationService } from '../../frame
 @Component({
   selector: 'app-user-registration',
   templateUrl: './user-registration.component.html',
-  styleUrls: ['./user-registration.component.css']
+  styleUrls: ['./user-registration.component.scss']
 })
 export class UserRegistrationComponent implements OnInit {
 
