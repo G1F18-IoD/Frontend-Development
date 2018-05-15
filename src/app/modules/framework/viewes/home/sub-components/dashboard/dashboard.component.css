@@ -1,11 +1,11 @@
 .btn-row-grid {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-content: space-evenly;
 }
 
 .dashboard-div {
     background-color: whitesmoke;
-    border: 2px solid #0658aa;
+    border: 2px solid #4F4D53;
     padding: 10px;
     margin-bottom: 10px;
 }
@@ -34,10 +34,11 @@
 
 .row-btn {
     width: 100%;
+    outline: none;
 }
 
 .tab-selected {
-    opacity: 0.5;
+    background-color: #E8BE02;
 }
 
 .component-div {

@@ -1,0 +1,60 @@
+<div>
+  <!-- Flightplan table -->
+  <table class="table table-striped table-bordered">
+    <tr>
+      <th *ngFor="let header of headers">
+        {{header | propercase}}
+      </th>
+    </tr>
+    <tr *ngFor="let flightplan of flightplans">
+      <td>
+        {{flightplan.authorId}}
+      </td>
+      <td>
+        {{flightplan.createdAt}}
+      </td>
+    </tr>
+  </table>
+
+  <!-- Add new flightplan button -->
+  <div *ngIf="!showAddFlightplanBox">
+    <button class="form-sub-btn float-right add-flightplan-btn" (click)="showHideAddFlightplanBox()">
+      <span class="glyphicon glyphicon-plus"></span>
+      Add flightplan
+    </button>
+  </div>
+
+  <!-- Add new flightplan box -->
+  <div *ngIf="showAddFlightplanBox">
+    <div class="add-flightplan-header background-box">
+      <label class="form-label">Flightplan Name: </label>
+      <input class="flightplan-name-input" [(ngModel)]="newFlightplanName">
+      <span class="glyphicon glyphicon-remove float-right form-header-btn" (click)="showHideAddFlightplanBox()"></span>
+    </div>
+    <div class="add-flightplan-box overflow">
+
+      <!-- dynamic command adder -->
+      <div class="command-adder-div grid-container">
+        <label class="form-label commands-amount-label">Amount of commands: </label>
+        <input class="form-input commands-amount-input" [(ngModel)]="commandAmountToAdd" (ngModelChange)="checkCommandInput()" type="number">
+        <label class="form-label commands-amount-label">/ {{maxAllowedCommands}}</label>
+        <div>
+          <button class="form-header-btn" (click)="addCommandToNewFlightplan()">Set Commands</button>
+        </div>
+      </div>
+
+      <!-- flightplan commands -->
+      <ng-template ngFor let-x [ngForOf]="newFlightplanCommandsAmount | times" let-i="index">
+        <div class="flightplan-input-container grid-container">
+          <label class="form-label flightplan-label">Command {{i + 1}}</label>
+          <input class="form-input" type="text" [(ngModel)]="newFlightplanCommands[i]">
+        </div>
+      </ng-template>
+
+      <hr>
+
+      <!-- save button -->
+      <button class="form-sub-btn float-right save-btn">Save</button>
+    </div>
+  </div>
+</div>

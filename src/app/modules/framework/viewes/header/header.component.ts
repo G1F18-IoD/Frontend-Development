@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   public auth = false;
 
-  constructor(private globalService: GlobalService, private router: Router) { }
+  constructor(public globalService: GlobalService, private router: Router) { }
 
   ngOnInit() {
 

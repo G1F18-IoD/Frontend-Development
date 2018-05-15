@@ -27,16 +27,6 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let reqOption: HttpDefined = {
-      requestResource: 'http://tek-uas-stud0b.stud-srv.sdu.dk/api/flightplan',
-      data: {},
-      statusCode: [200]
-    };
-    this.httpReqs.sendGetRequest(reqOption).subscribe((data) => {
-
-    }, error => {
-      this.error = error;
-    });
   }
 
   public login() {

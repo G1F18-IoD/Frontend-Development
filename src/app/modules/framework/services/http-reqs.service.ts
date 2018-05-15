@@ -12,9 +12,9 @@ export class HttpReqsService {
   constructor(private http: HttpClient) { }
 
   sendPostRequest(reqOption: HttpDefined) {
-    let headers = new HttpHeaders();
-    //headers.append('authorization', this.authenticationService.getToken());
-    reqOption.data.jwt_token = localStorage.getItem('jwttoken');
+    let headers = new HttpHeaders({'AuthToken': localStorage.getItem("jwttoken")});
+    //headers.append('authorization', localStorage.getItem("jwttoken"));
+    //reqOption.data.jwt_token = localStorage.getItem('jwttoken');
     let retval = this.http.post(reqOption.requestResource, reqOption.data, { headers: headers, observe: 'response' }).map((response: HttpResponse<Object>) => {
       if (reqOption.statusCode.indexOf(response.status) > -1) {
         return response.body;
@@ -32,9 +32,9 @@ export class HttpReqsService {
   }
 
   sendGetRequest(reqOption: HttpDefined) {
-    let headers = new HttpHeaders();
-    //headers.append('authorization', this.authenticationService.getToken());
-    reqOption.data.jwt_token = localStorage.getItem('jwttoken');
+    let headers = new HttpHeaders({'AuthToken': localStorage.getItem("jwttoken")});
+    //headers.append('authorization', localStorage.getItem("jwttoken"));
+    //reqOption.data.jwt_token = localStorage.getItem('jwttoken');
     let retval = this.http.get(reqOption.requestResource, { headers: headers, observe: 'response' }).map((response: HttpResponse<Object>) => {
       if (reqOption.statusCode.indexOf(response.status) > -1) {
         return response.body;

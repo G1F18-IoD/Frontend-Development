@@ -19,21 +19,7 @@ export class DroneSelectorComponent implements OnInit {
   }
 
   private getDroneList() {
-    let reqOption: HttpDefined = {
-      requestResource: 'http://skjoldtoft.dk/daniel/hab/index.php',
-      data: {
-        class: "iod_ipconfig",
-        method: "getIps"
-       },
-      statusCode: [200]
-    };
-    this.httpReqs.sendPostRequest(reqOption).subscribe((data) => {
-      // TEST IMPLEMENTATION:
-      if(data != null) {
-        console.log(data);
-        this.availableDrones = data;
-      }
-    });
+    //Not implemented
   }
 
   public refresh() {

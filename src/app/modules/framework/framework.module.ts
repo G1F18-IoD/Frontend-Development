@@ -13,12 +13,14 @@ import { UserLoginComponent } from './viewes/user-login/user-login.component';
 import { HeaderComponent } from './viewes/header/header.component';
 import { DashboardComponent } from './viewes/home/sub-components/dashboard/dashboard.component';
 import { FooterComponent } from './viewes/footer/footer.component';
-import { PropercasePipe } from './services/propercase.pipe';
+import { PropercasePipe } from './pipes/propercase.pipe';
 import { FlightControlComponent } from './viewes/home/sub-components/flight-control/flight-control.component';
 import { DroneSelectorComponent } from './viewes/home/sub-components/drone-selector/drone-selector.component';
 import { LogOverviewComponent } from './viewes/home/sub-components/log-overview/log-overview.component';
 import { AccountMenuComponent } from './components/account-menu/account-menu.component';
 import { FeedbackBoxComponent } from './components/feedback-box/feedback-box.component';
+import { FlightPlansComponent } from './viewes/home/sub-components/flight-plans/flight-plans.component';
+import { TimesPipe } from './pipes/times.pipe';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { FeedbackBoxComponent } from './components/feedback-box/feedback-box.com
     DroneSelectorComponent, 
     LogOverviewComponent, 
     AccountMenuComponent, 
-    FeedbackBoxComponent
+    FeedbackBoxComponent, 
+    FlightPlansComponent, TimesPipe
   ],
   providers: [
     HttpReqsService,

@@ -9,7 +9,7 @@ import { HttpReqsService } from '../../../../framework-export-barrel';
 })
 export class DashboardComponent implements OnInit {
 
-  public buttonRowHeaders = ['flight-control','drones','logs'];
+  public buttonRowHeaders = ['flight-control','drones','flight plans','logs'];
   public connection = "no connection";
 
   public state = 0;
