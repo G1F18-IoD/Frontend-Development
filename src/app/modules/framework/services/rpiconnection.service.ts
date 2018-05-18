@@ -20,10 +20,17 @@ export class RpiconnectionService {
 
   constructor(private httpReqs: HttpReqsService) { }
 
+  /*
+  * setConnectedRPI sets "connectedRPI" equal to the given parameter, which is necessary for the frontend
+  * to know which drone is currently active.
+  */
   public setConnectedRPI(_rpiObject) {
     this.connectedRPI = _rpiObject;
   }
 
+  /*
+  * getDroneConnections() returns all drone connections as an observable.
+  */
   public getDroneConnections(): Observable<Object> {
     let reqOption: HttpDefined = {
       requestResource: 'http://tek-uas-stud0b.stud-srv.sdu.dk/api/rpiconnection',
@@ -34,22 +41,36 @@ export class RpiconnectionService {
     return this.httpReqs.sendGetRequest(reqOption);
   }
 
+  /*
+  * connectToDrone() is used to connect to a specific drone via its id.
+  */
   public connectToDrone(_id): Observable<Object> {
     if (this.connectedRPI == null) {
       return this.setDroneStatus(_id, "connect");
     }
   }
 
+  /*
+  * disconnectFromDrone() disconnects from the currently connected drone (connectedRPI).
+  */
   public disconnectFromDrone(): Observable<Object> {
     let droneId = this.connectedRPI['rowId'];
     this.connectedRPI = null;
     return this.setDroneStatus(droneId, "disconnect");
   }
 
+  /*
+  * changeConnectionsState sets the state of "connectionState".
+  * This is used to signal changes to other components, if they're subscribed.
+  */
   public changeConnectionState(state) {
     this.connectionState.next(state);
   }
 
+  /*
+  * setDroneStatus() is a private method that can be used to either connect or disconnect
+  * from a specific drone.
+  */
   private setDroneStatus(_id, _status) {
     let requestURL = "http://tek-uas-stud0b.stud-srv.sdu.dk/api/rpiconnection/";
 

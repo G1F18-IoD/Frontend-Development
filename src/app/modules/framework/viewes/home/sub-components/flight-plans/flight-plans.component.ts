@@ -10,7 +10,7 @@ import { HttpReqsService } from '../../../../framework-export-barrel';
 export class FlightPlansComponent implements OnInit {
 
   public error;
-  public headers = ['author ID', 'created']
+  public headers = ['author ID', 'name', 'created']
   public flightplans;
   public showAddFlightplanBox = false;
   

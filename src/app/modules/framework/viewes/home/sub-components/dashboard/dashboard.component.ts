@@ -14,10 +14,22 @@ export class DashboardComponent implements OnInit {
   public connection = "no connection";
 
   public state = 0;
+  public error;
 
   constructor(
     private httpReqs: HttpReqsService,
-    private rpicon: RpiconnectionService) { }
+    public rpicon: RpiconnectionService) {
+      this.rpicon.connectionChange$.subscribe(
+        value => {
+          if(value == "connected") {
+            this.connection = "connected";
+          }
+          if(value == "disconnected") {
+            this.connection = "no connection";
+          }
+        }
+      );
+     }
 
   ngOnInit() {
     this.initializeConnectionBar();
@@ -30,12 +42,12 @@ export class DashboardComponent implements OnInit {
       connections = data;
       connections.forEach(element => {
         if (element['status'] === 'connected') {
-          this.connection = "connected"
           this.rpicon.setConnectedRPI(element);
+          this.connection = "connected"
         }
       });
     }, error => {
-
+      this.error = error;
     });
   }
 
@@ -46,15 +58,11 @@ export class DashboardComponent implements OnInit {
   public disconnectDrone() {
     this.rpicon.disconnectFromDrone().subscribe(() => {
     }, error => {
-      console.log(error);
+      this.error = error;
     }, () => {
       this.rpicon.changeConnectionState("disconnected");
+      this.connection = "no connection";
     });
-    this.connection = "no connection";
-  }
-
-  public connectionChanged(event) {
-    this.connection = event;
   }
 
 }

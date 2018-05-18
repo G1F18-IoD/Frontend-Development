@@ -22,8 +22,8 @@
       <td>{{drone['port']}}</td>
       <td>{{drone['status']}}</td>
       <td>
-        <button *ngIf="drone['status'] != 'connected'" class="form-sub-btn" (click)="createInitialConnectionToDrone(i)">Connect</button>
-        <button *ngIf="drone['status'] == 'connected'" class="form-sub-btn" (click)="disconnectFromDrone(i)">Disconnect</button>
+        <button *ngIf="!rpicon.connectedRPI" class="form-sub-btn" (click)="createInitialConnectionToDrone(i)">Connect</button>
+        <button *ngIf="drone['status'] == 'connected'" class="form-sub-btn disconnect-btn" (click)="disconnectFromDrone(i)">Disconnect</button>
       </td>
     </tr>
   </table>

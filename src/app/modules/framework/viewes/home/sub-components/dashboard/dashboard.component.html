@@ -1,7 +1,7 @@
 <!-- Connection bar -->
 <div>
   <div class="flex-container dashboard-div center-div width-control">
-    <div class="connection-glyph">
+    <div [ngClass]="{'connected' : connection == 'connected'}" class="connection-glyph">
       <span class="glyphicon glyphicon-signal"></span>
       <label class="connection-label">{{connection | propercase}}</label>
     </div>
@@ -36,3 +36,6 @@
     </div>
   </div>
 </div>
+
+<!-- error box -->
+<app-feedback-box [messageToUser]="error" [typeName]="'error'"></app-feedback-box>

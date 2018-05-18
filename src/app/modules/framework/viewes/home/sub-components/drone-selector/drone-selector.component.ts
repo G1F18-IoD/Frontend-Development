@@ -81,6 +81,7 @@ export class DroneSelectorComponent implements OnInit {
       this.error = error;
     }, () => {
       this.refresh();
+      this.rpicon.changeConnectionState("connected");
     });
   }
 
@@ -98,6 +99,7 @@ export class DroneSelectorComponent implements OnInit {
       this.error = error;
     }, () => {
       this.refresh();
+      this.rpicon.changeConnectionState("disconnected");
     });
   }
 
