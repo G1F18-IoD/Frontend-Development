@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpDefined } from '../../../../interfaces/http-defined';
 import { HttpReqsService } from '../../../../framework-export-barrel';
+import { RpiconnectionService } from '../../../../services/rpiconnection.service';
 
 @Component({
   selector: 'app-drone-selector',
@@ -14,16 +15,20 @@ import { HttpReqsService } from '../../../../framework-export-barrel';
 * The purpose of this component is to provide a view, where drones (RPi's) connected
 * to the backend are made available for the user.
 * 
-* This view allows the user to pick a drone and connect to it via the user interface.
+* This view allows the user to pick a drone and connect/disconnect to it via the user interface.
 */
 export class DroneSelectorComponent implements OnInit {
 
-  public headers = ['ip','port','status','connect'];
+  public headers = ['ip', 'port', 'status', 'connect'];
   public availableDrones: any;
-  
+
   public error;
 
-  constructor(private httpReqs: HttpReqsService) { }
+  constructor(
+    private httpReqs: HttpReqsService,
+    private rpicon: RpiconnectionService) {
+
+  }
 
   ngOnInit() {
     this.getDroneList();
@@ -55,7 +60,44 @@ export class DroneSelectorComponent implements OnInit {
   * can refresh the table data, in case new drones are made available.
   */
   public refresh() {
+    this.error = null;
     this.getDroneList();
+  }
+
+  /*
+  * createInitialConnectionToDrone() tries to connect to the selected drone.
+  * This is done via the RpiconnectionService.
+  * If succesful, the connectedRPI is set to be equal to the drone.
+  */
+  public createInitialConnectionToDrone(_index: number) {
+    this.error = null;
+    let droneID = this.availableDrones[_index].rowId;
+
+    this.rpicon.connectToDrone(droneID).subscribe((data) => {
+      this.rpicon.connectedRPI = data;
+      console.log(data);
+    }, error => {
+      this.error = error;
+    }, () => {
+      this.refresh();
+    });
+  }
+
+  /*
+  * disconnectFromDrone() disconnects from a connected drone,
+  * via the RpiconnectionService.
+  */
+  public disconnectFromDrone(_index: number) {
+    this.error = null;
+    let droneID = this.availableDrones[_index].rowId;
+
+    this.rpicon.disconnectFromDrone(droneID).subscribe((data) => {
+      console.log(data);
+    }, error => {
+      this.error = error;
+    }, () => {
+      this.refresh();
+    });
   }
 
 }

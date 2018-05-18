@@ -21,6 +21,7 @@ import { AccountMenuComponent } from './components/account-menu/account-menu.com
 import { FeedbackBoxComponent } from './components/feedback-box/feedback-box.component';
 import { FlightPlansComponent } from './viewes/home/sub-components/flight-plans/flight-plans.component';
 import { TimesPipe } from './pipes/times.pipe';
+import { RpiconnectionService } from './services/rpiconnection.service';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { TimesPipe } from './pipes/times.pipe';
     HttpReqsService,
     AuthenticationService,
     CommonFunctionsService,
-    GlobalService
+    GlobalService,
+    RpiconnectionService
   ],
   exports: [
     HomeComponent,

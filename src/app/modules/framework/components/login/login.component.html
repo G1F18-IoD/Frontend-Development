@@ -1,4 +1,4 @@
-<div>
+<div (keyup.enter)="login()">
     <div class="background-box">
         <label class="form-label">Username</label>
         <input class="form-input" type="text" [(ngModel)]="username" />
@@ -14,5 +14,7 @@
 
     <div class="error-div">
         <app-feedback-box [messageToUser]="error" [typeName]="'error'"></app-feedback-box>
+        <br />
+        <app-feedback-box [messageToUser]="'Do not use sensitive information as login information. All info is stored unsafely.'" [typeName]="'error'"></app-feedback-box>
     </div>
 </div>
