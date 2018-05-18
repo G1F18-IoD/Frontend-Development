@@ -18,7 +18,6 @@ import { RpiconnectionService } from '../../../../services/rpiconnection.service
 * This view allows the user to pick a drone and connect/disconnect to it via the user interface.
 */
 export class DroneSelectorComponent implements OnInit {
-  @Output() rpiConnectionChanged = new EventEmitter();
 
   public headers = ['ip', 'port', 'status', 'connect'];
   public availableDrones: any;
@@ -29,6 +28,14 @@ export class DroneSelectorComponent implements OnInit {
     private httpReqs: HttpReqsService,
     private rpicon: RpiconnectionService) {
 
+    this.rpicon.connectionChange$.subscribe(
+      value => {
+        if (value == "disconnected") {
+          this.getDroneList();
+          this.rpicon.changeConnectionState("null");  // Resets observable
+        }
+      }
+    );
   }
 
   ngOnInit() {
@@ -74,7 +81,6 @@ export class DroneSelectorComponent implements OnInit {
       this.error = error;
     }, () => {
       this.refresh();
-      this.rpiConnectionChanged.emit("connected");
     });
   }
 
@@ -87,12 +93,11 @@ export class DroneSelectorComponent implements OnInit {
     let droneID = this.availableDrones[_index].rowId;
 
     this.rpicon.disconnectFromDrone().subscribe((data) => {
-      
+
     }, error => {
       this.error = error;
     }, () => {
       this.refresh();
-      this.rpiConnectionChanged.emit("no connection");
     });
   }
 

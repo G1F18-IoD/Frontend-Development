@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpDefined } from '../interfaces/http-defined';
 import { HttpReqsService } from './http-reqs.service';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 /*
@@ -12,6 +13,10 @@ import { Observable } from 'rxjs/Observable';
 export class RpiconnectionService {
 
   public connectedRPI = null;
+
+  // Observable detecting changes in connection
+  public connectionState = new Subject<string>();
+  public connectionChange$ = this.connectionState.asObservable();
 
   constructor(private httpReqs: HttpReqsService) { }
 
@@ -31,28 +36,31 @@ export class RpiconnectionService {
 
   public connectToDrone(_id): Observable<Object> {
     if (this.connectedRPI == null) {
-      return this.setDroneStatus(_id, "connected");
+      return this.setDroneStatus(_id, "connect");
     }
   }
 
   public disconnectFromDrone(): Observable<Object> {
     let droneId = this.connectedRPI['rowId'];
     this.connectedRPI = null;
-    return this.setDroneStatus(droneId, "disconnected");
+    return this.setDroneStatus(droneId, "disconnect");
+  }
+
+  public changeConnectionState(state) {
+    this.connectionState.next(state);
   }
 
   private setDroneStatus(_id, _status) {
-    let requestURL = "http://tek-uas-stud0b.stud-srv.sdu.dk/api/rpiconnection/status/";
-    let connectionStatus = _status; // Is an ENUM dependant on backend implementation
+    let requestURL = "http://tek-uas-stud0b.stud-srv.sdu.dk/api/rpiconnection/";
 
-    requestURL += _id;
+    requestURL += _status + "/" + _id;
 
     let reqOption: HttpDefined = {
       requestResource: requestURL,
-      data: { status: connectionStatus },
+      data: {},
       statusCode: [200]
     };
 
-    return this.httpReqs.sendPostRequest(reqOption);
+    return this.httpReqs.sendGetRequest(reqOption);
   }
 }

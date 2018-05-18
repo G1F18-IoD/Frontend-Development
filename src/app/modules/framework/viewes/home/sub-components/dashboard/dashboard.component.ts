@@ -43,8 +43,14 @@ export class DashboardComponent implements OnInit {
     this.state = _state;
   }
 
-  public setConnection() {
-
+  public disconnectDrone() {
+    this.rpicon.disconnectFromDrone().subscribe(() => {
+    }, error => {
+      console.log(error);
+    }, () => {
+      this.rpicon.changeConnectionState("disconnected");
+    });
+    this.connection = "no connection";
   }
 
   public connectionChanged(event) {
