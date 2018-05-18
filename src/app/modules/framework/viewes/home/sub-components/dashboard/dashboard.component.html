@@ -26,7 +26,7 @@
       <app-flight-control></app-flight-control>
     </div>
     <div *ngIf="state == 1">
-      <app-drone-selector></app-drone-selector>
+      <app-drone-selector (rpiConnectionChanged)="connectionChanged($event)"></app-drone-selector>
     </div>
     <div *ngIf="state == 2">
       <app-flight-plans></app-flight-plans>

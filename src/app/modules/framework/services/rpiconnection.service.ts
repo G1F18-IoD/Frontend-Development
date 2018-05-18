@@ -15,15 +15,30 @@ export class RpiconnectionService {
 
   constructor(private httpReqs: HttpReqsService) { }
 
+  public setConnectedRPI(_rpiObject) {
+    this.connectedRPI = _rpiObject;
+  }
+
+  public getDroneConnections(): Observable<Object> {
+    let reqOption: HttpDefined = {
+      requestResource: 'http://tek-uas-stud0b.stud-srv.sdu.dk/api/rpiconnection',
+      data: {},
+      statusCode: [200]
+    };
+
+    return this.httpReqs.sendGetRequest(reqOption);
+  }
+
   public connectToDrone(_id): Observable<Object> {
     if (this.connectedRPI == null) {
       return this.setDroneStatus(_id, "connected");
     }
   }
 
-  public disconnectFromDrone(_id): Observable<Object> {
+  public disconnectFromDrone(): Observable<Object> {
+    let droneId = this.connectedRPI['rowId'];
     this.connectedRPI = null;
-    return this.setDroneStatus(_id, "disconnected");
+    return this.setDroneStatus(droneId, "disconnected");
   }
 
   private setDroneStatus(_id, _status) {

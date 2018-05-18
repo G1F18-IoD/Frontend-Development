@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpDefined } from '../../../../interfaces/http-defined';
 import { HttpReqsService } from '../../../../framework-export-barrel';
 import { RpiconnectionService } from '../../../../services/rpiconnection.service';
@@ -18,6 +18,7 @@ import { RpiconnectionService } from '../../../../services/rpiconnection.service
 * This view allows the user to pick a drone and connect/disconnect to it via the user interface.
 */
 export class DroneSelectorComponent implements OnInit {
+  @Output() rpiConnectionChanged = new EventEmitter();
 
   public headers = ['ip', 'port', 'status', 'connect'];
   public availableDrones: any;
@@ -42,14 +43,8 @@ export class DroneSelectorComponent implements OnInit {
   * as a row in the corresponding HTML table via the "availableDrones" variable.
   */
   private getDroneList() {
-    let reqOption: HttpDefined = {
-      requestResource: 'http://tek-uas-stud0b.stud-srv.sdu.dk/api/rpiconnection',
-      data: {},
-      statusCode: [200]
-    };
-    this.httpReqs.sendGetRequest(reqOption).subscribe((data) => {
+    this.rpicon.getDroneConnections().subscribe((data) => {
       this.availableDrones = data;
-
     }, error => {
       this.error = error;
     });
@@ -74,12 +69,12 @@ export class DroneSelectorComponent implements OnInit {
     let droneID = this.availableDrones[_index].rowId;
 
     this.rpicon.connectToDrone(droneID).subscribe((data) => {
-      this.rpicon.connectedRPI = data;
-      console.log(data);
+      this.rpicon.setConnectedRPI(data);
     }, error => {
       this.error = error;
     }, () => {
       this.refresh();
+      this.rpiConnectionChanged.emit("connected");
     });
   }
 
@@ -91,12 +86,13 @@ export class DroneSelectorComponent implements OnInit {
     this.error = null;
     let droneID = this.availableDrones[_index].rowId;
 
-    this.rpicon.disconnectFromDrone(droneID).subscribe((data) => {
-      console.log(data);
+    this.rpicon.disconnectFromDrone().subscribe((data) => {
+      
     }, error => {
       this.error = error;
     }, () => {
       this.refresh();
+      this.rpiConnectionChanged.emit("no connection");
     });
   }
 
