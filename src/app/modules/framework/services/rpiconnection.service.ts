@@ -67,6 +67,18 @@ export class RpiconnectionService {
     this.connectionState.next(state);
   }
 
+  public executeFlightplanOnDrone(_flightplan, _priority): Observable<Object> {
+    let requestURL = 'http://tek-uas-stud0b.stud-srv.sdu.dk/api/rpiconnection/execute_flightplan/' + this.connectedRPI['rowId'];
+
+    let reqOption: HttpDefined = {
+      requestResource: requestURL,
+      data: { flightplanName: _flightplan, priority: _priority },
+      statusCode: [200]
+    };
+
+    return this.httpReqs.sendPostRequest(reqOption);
+  }
+
   /*
   * setDroneStatus() is a private method that can be used to either connect or disconnect
   * from a specific drone.
@@ -82,6 +94,6 @@ export class RpiconnectionService {
       statusCode: [200]
     };
 
-    return this.httpReqs.sendGetRequest(reqOption);
+    return this.httpReqs.sendPostRequest(reqOption);
   }
 }

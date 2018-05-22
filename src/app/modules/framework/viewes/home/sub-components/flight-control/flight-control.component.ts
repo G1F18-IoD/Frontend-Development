@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpDefined } from '../../../../interfaces/http-defined';
+import { HttpReqsService } from '../../../../framework-export-barrel';
+import { RpiconnectionService } from '../../../../services/rpiconnection.service';
 
 @Component({
   selector: 'app-flight-control',
@@ -22,7 +25,10 @@ export class FlightControlComponent implements OnInit {
   public currentCommand;
   public uniqID = new Date();
 
-  constructor() { }
+  constructor(
+    private httpReqs: HttpReqsService,
+    private rpicon: RpiconnectionService
+  ) { }
 
   ngOnInit() {
     this.possibleCommands.sort();
@@ -60,7 +66,7 @@ export class FlightControlComponent implements OnInit {
   * This string is run through a switch and the appropriate color is returned.
   */
   private getStatusColor(_cmd: string) {
-    switch(_cmd.toUpperCase()) {
+    switch (_cmd.toUpperCase()) {
       case "RUNNING":
       case "SUCCESS":
         return "lightgreen";
@@ -82,13 +88,14 @@ export class FlightControlComponent implements OnInit {
   * For example, "RUN" requires the name of a flightplan. This is specified with _cmd_specification.
   * This parameter is, however, not required and can therefore be ignored.
   */
-  private handleCommand(_cmd: string , _cmd_specification?: string) {
+  private handleCommand(_cmd: string, _cmd_specification?: string) {
     switch (_cmd.toUpperCase()) {
       case "ARM":
         return "SUCCESS - Arming sucessful";
       case "RUN":
-        if (_cmd_specification != null && _cmd_specification != undefined && _cmd_specification != "") {
-          return "RUNNING - " + _cmd_specification;
+        if (_cmd_specification != null  && _cmd_specification != "") {
+          this.executeFlightPlan(_cmd_specification);
+          return "RUNNING - Initiating " + _cmd_specification;
         } else {
           return "ERROR - No flightplan defined. Use 'RUN &ltflightplan name&gt'.";
         }
@@ -103,6 +110,14 @@ export class FlightControlComponent implements OnInit {
       default:
         return "UNKNOWN - Use 'HELP' to get a list of commands.";
     }
+  }
+
+  private executeFlightPlan(_flightplan) { // Priority is hardcoded to 1 until further setup
+    this.rpicon.executeFlightplanOnDrone(_flightplan, 1).subscribe((data) => {
+      this.commands.push("SUCCESS - " + _flightplan + " now running");
+    }, error => {
+      this.commands.push("ERROR - " + _flightplan + " ran into an error");
+    });
   }
 
 }
