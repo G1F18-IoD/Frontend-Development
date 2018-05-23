@@ -9,13 +9,16 @@ import { HttpDefined } from '../framework-export-barrel';
 @Injectable()
 export class HttpReqsService {
 
+  private standardReqURL = "http://tek-uas-stud0b.stud-srv.sdu.dk/";
+
   constructor(private http: HttpClient) { }
 
   sendPostRequest(reqOption: HttpDefined) {
+    let reqResource = this.standardReqURL + reqOption.requestResource;
     let headers = new HttpHeaders({'AuthToken': localStorage.getItem("jwttoken")});
     //headers.append('authorization', localStorage.getItem("jwttoken"));
     //reqOption.data.jwt_token = localStorage.getItem('jwttoken');
-    let retval = this.http.post(reqOption.requestResource, reqOption.data, { headers: headers, observe: 'response' }).map((response: HttpResponse<Object>) => {
+    let retval = this.http.post(reqResource, reqOption.data, { headers: headers, observe: 'response' }).map((response: HttpResponse<Object>) => {
       if (reqOption.statusCode.indexOf(response.status) > -1) {
         return response.body;
       } else {
@@ -32,10 +35,11 @@ export class HttpReqsService {
   }
 
   sendGetRequest(reqOption: HttpDefined) {
+    let reqResource = this.standardReqURL + reqOption.requestResource;
     let headers = new HttpHeaders({'AuthToken': localStorage.getItem("jwttoken")});
     //headers.append('authorization', localStorage.getItem("jwttoken"));
     //reqOption.data.jwt_token = localStorage.getItem('jwttoken');
-    let retval = this.http.get(reqOption.requestResource, { headers: headers, observe: 'response' }).map((response: HttpResponse<Object>) => {
+    let retval = this.http.get(reqResource, { headers: headers, observe: 'response' }).map((response: HttpResponse<Object>) => {
       if (reqOption.statusCode.indexOf(response.status) > -1) {
         return response.body;
       } else {

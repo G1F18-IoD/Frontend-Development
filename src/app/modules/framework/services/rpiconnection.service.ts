@@ -33,7 +33,7 @@ export class RpiconnectionService {
   */
   public getDroneConnections(): Observable<Object> {
     let reqOption: HttpDefined = {
-      requestResource: 'http://tek-uas-stud0b.stud-srv.sdu.dk/api/rpiconnection',
+      requestResource: 'api/rpiconnection',
       data: {},
       statusCode: [200]
     };
@@ -68,7 +68,7 @@ export class RpiconnectionService {
   }
 
   public executeFlightplanOnDrone(_flightplan, _priority): Observable<Object> {
-    let requestURL = 'http://tek-uas-stud0b.stud-srv.sdu.dk/api/rpiconnection/execute_flightplan/' + this.connectedRPI['rowId'];
+    let requestURL = 'api/rpiconnection/execute_flightplan/' + this.connectedRPI['rowId'];
 
     let reqOption: HttpDefined = {
       requestResource: requestURL,
@@ -84,7 +84,7 @@ export class RpiconnectionService {
   * from a specific drone.
   */
   private setDroneStatus(_id, _status) {
-    let requestURL = "http://tek-uas-stud0b.stud-srv.sdu.dk/api/rpiconnection/";
+    let requestURL = "api/rpiconnection/";
 
     requestURL += _status + "/" + _id;
 

@@ -30,7 +30,7 @@ export class FlightPlansComponent implements OnInit {
 
   private getFlightplans() {
     let reqOption: HttpDefined = {
-      requestResource: 'http://tek-uas-stud0b.stud-srv.sdu.dk/api/flightplan',
+      requestResource: 'api/flightplan',
       data: {},
       statusCode: [200]
     };
@@ -70,7 +70,7 @@ export class FlightPlansComponent implements OnInit {
 
   private getFlightplanSettings() {
     let reqOption: HttpDefined = {
-      requestResource: 'http://tek-uas-stud0b.stud-srv.sdu.dk/api/flightplan/settings',
+      requestResource: 'api/flightplan/settings',
       data: {},
       statusCode: [200]
     };

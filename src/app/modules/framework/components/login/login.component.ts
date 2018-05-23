@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
 
   public register() {
     let reqOption: HttpDefined = {
-      requestResource: 'http://tek-uas-stud0b.stud-srv.sdu.dk/api/auth/register',
+      requestResource: 'api/auth/register',
       data: {
         username: this.username, 
         password: this.password 
