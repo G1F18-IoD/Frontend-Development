@@ -2,7 +2,7 @@
   <!-- Flightplan table -->
   <table class="table table-striped">
     <tr>
-      <th class="title-th" colspan="3">
+      <th class="title-th" colspan="4">
         Flightplans
       </th>
     </tr>
@@ -13,10 +13,13 @@
     </tr>
     <tr *ngFor="let flightplan of flightplans">
       <td>
-        {{flightplan.authorId}}
+        {{flightplan.rowId}}
       </td>
       <td>
         {{flightplan.name}}
+      </td>
+      <td>
+        {{flightplan.authorId}}
       </td>
       <td>
         {{flightplan.createdAt}}
@@ -48,7 +51,7 @@
           type="number">
         <label class="form-label commands-amount-label">/ {{maxAllowedCommands}}</label>
         <div>
-          <button class="form-header-btn" (click)="addCommandToNewFlightplan()">Set Commands</button>
+          <button class="form-header-btn" (click)="setNewFlightplanCommandsAmount()">Set Commands</button>
         </div>
       </div>
 
@@ -56,12 +59,22 @@
       <ng-template ngFor let-x [ngForOf]="newFlightplanCommandsAmount | times" let-i="index">
         <div class="flightplan-input-container grid-container">
           <label class="form-label flightplan-label">Command {{i + 1}}</label>
-          <input class="form-sub-input" type="text" [(ngModel)]="newFlightplanCommands[i]">
+
+          <div></div>
+
+          <label>Cmd</label>
+          <input class="form-sub-input" type="text" [(ngModel)]="newFlightplanCommands[i].cmd">
+
+          <label>Message</label>
+          <input class="form-sub-input" type="text" [(ngModel)]="newFlightplanCommands[i].message">
+
+          <label>Params</label>
+          <input class="form-sub-input" type="text" placeholder="Separate parameters with space" [(ngModel)]="newFlightplanCommands[i].params">
         </div>
       </ng-template>
 
       <!-- save button -->
-      <button class="form-sub-btn float-right save-btn">Save</button>
+      <button class="form-sub-btn float-right save-btn" (click)="createNewFlightplan()">Save</button>
     </div>
   </div>
 </div>

@@ -10,16 +10,16 @@ import { HttpReqsService } from '../../../../framework-export-barrel';
 export class FlightPlansComponent implements OnInit {
 
   public error;
-  public headers = ['author ID', 'name', 'created']
+  public headers = ['flightplan ID', 'name', 'author ID', 'created']
   public flightplans;
   public showAddFlightplanBox = false;
-  
+
   // New flightplan controls
   public newFlightplanName = "";
   public newFlightplanCommandsAmount = 1;
   public commandAmountToAdd = 1;
   public maxAllowedCommands = 0;
-  public newFlightplanCommands = [];
+  public newFlightplanCommands = {};
 
   constructor(private httpReqs: HttpReqsService) { }
 
@@ -77,12 +77,16 @@ export class FlightPlansComponent implements OnInit {
     this.httpReqs.sendGetRequest(reqOption).subscribe((data) => {
       this.maxAllowedCommands = data['commandPerFlightplanCount'];
 
+      for (let i = 0; i < this.newFlightplanCommandsAmount; i++) {
+        this.newFlightplanCommands[i] = {};
+      }
+
     }, error => {
       this.error = error;
     });
   }
 
-  public addCommandToNewFlightplan() {
+  public setNewFlightplanCommandsAmount() {
     if (this.commandAmountToAdd !== null) {
       let addAmount = this.commandAmountToAdd;
       let amount = this.newFlightplanCommandsAmount + addAmount;
@@ -94,6 +98,10 @@ export class FlightPlansComponent implements OnInit {
       }
 
       this.commandAmountToAdd = this.newFlightplanCommandsAmount;
+
+      for (let i = 0; i < this.newFlightplanCommandsAmount; i++) {
+        this.newFlightplanCommands[i] = {};
+      }
     }
   }
 
@@ -110,11 +118,47 @@ export class FlightPlansComponent implements OnInit {
 
   public checkCommandInput() {
     setTimeout(() => {
-      if(this.commandAmountToAdd <= 0) {
+      if (this.commandAmountToAdd <= 0) {
         this.commandAmountToAdd = 1;
       } else if (this.commandAmountToAdd > this.maxAllowedCommands) {
         this.commandAmountToAdd = this.maxAllowedCommands;
       }
+    });
+  }
+
+  public createNewFlightplan() {
+    if (this.newFlightplanName != null && this.newFlightplanName != "") {
+      let reqOption: HttpDefined = {
+        requestResource: 'api/flightplan/',
+        data: { name: this.newFlightplanName },
+        statusCode: [200]
+      };
+
+      this.httpReqs.sendPostRequest(reqOption).subscribe((data) => {
+        this.getFlightplans();
+        this.addCommandToNewFlightplan(data['rowId'])
+      }, error => {
+        this.error = error;
+      });
+    }
+  }
+
+  private addCommandToNewFlightplan(_flightplan_id) {
+    Object.keys(this.newFlightplanCommands).forEach(key => {
+      let paramString = this.newFlightplanCommands[key]['params'];
+      let parameters = paramString.split(" ");
+
+      let reqOption: HttpDefined = {
+        requestResource: 'api/flightplan/cmd/' + _flightplan_id,
+        data: { cmd: this.newFlightplanCommands[key].cmd, message: this.newFlightplanCommands[key].message, params: parameters, order: key },
+        statusCode: [200]
+      };
+
+      this.httpReqs.sendPostRequest(reqOption).subscribe((data) => {
+
+      }, error => {
+        this.error = error;
+      });
     });
   }
 

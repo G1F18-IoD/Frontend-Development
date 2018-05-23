@@ -31,6 +31,10 @@ export class GlobalService {
     }
   }
 
+  public getObjectKeys(_object) {
+    return Object.keys(_object);
+  }
+
   public routeTo(routeArgs: Array<any>): void {
 
     this.router.navigate(routeArgs);
