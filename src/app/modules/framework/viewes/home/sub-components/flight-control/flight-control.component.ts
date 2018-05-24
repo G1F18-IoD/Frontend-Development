@@ -43,16 +43,17 @@ export class FlightControlComponent implements OnInit {
   */
   public enterCommand(_string: string) {
     var elements = _string.split(" ");
+    var returnValue = this.handleCommand(elements[0], elements[1]);
 
     this.commands.push("> " + _string.toUpperCase());
-    this.commands.push(this.handleCommand(elements[0], elements[1]));
+    this.commands.push(returnValue);
 
     setTimeout(() => {
       var elem = document.getElementById('flight-console');
       elem.scrollTop = elem.scrollHeight;
 
       var feedback = document.getElementById(this.uniqID + "+" + (this.commands.length - 1));
-      var returnSplit = this.handleCommand(elements[0], elements[1]).split(" ");
+      var returnSplit = returnValue.split(" ");
       feedback.style.color = this.getStatusColor(returnSplit[0]);
     }, 0);
 

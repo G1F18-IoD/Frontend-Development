@@ -10,7 +10,7 @@ import { HttpDefined } from '../framework-export-barrel';
 export class HttpReqsService {
 
   //private standardReqURL = "http://tek-uas-stud0b.stud-srv.sdu.dk/";
-  private standardReqURL = "http://192.168.0.19:5021/";
+  public standardReqURL = "http://192.168.0.19:5021/";
 
   constructor(private http: HttpClient) { }
 

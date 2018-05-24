@@ -8,14 +8,19 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import { HttpReqsService } from './http-reqs.service';
 
 @Injectable()
 export class AuthenticationService implements CanActivate {
-  constructor(private http: HttpClient, private globalService: GlobalService) { }
+  constructor(
+    private http: HttpClient,
+    private globalService: GlobalService,
+    private httpreqs: HttpReqsService
+  ) { }
 
   public login(username, password) {
     let reqOption: HttpDefined = {
-      requestResource: 'http://tek-uas-stud0b.stud-srv.sdu.dk/api/auth/',
+      requestResource: this.httpreqs.standardReqURL + 'api/auth/',
       data: {
         username: username,
         password: password
