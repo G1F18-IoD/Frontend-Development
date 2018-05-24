@@ -1,0 +1,10 @@
+// Import variables from styles.scss:
+@import "../../../../../../../styles.scss";
+
+.log-overview-div {
+    background-color: $tertiary-color;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    margin-top: 150px;
+}

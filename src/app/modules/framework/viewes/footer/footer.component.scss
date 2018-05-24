@@ -1,8 +1,11 @@
+// Import variables from styles.scss:
+@import "../../../../../styles.scss";
+
 footer {
     width: 100%;
     height: 60px;
-    border-top: 5px solid #E8BE02;
-    background-color: #4F4D53;
+    border-top: 5px solid $secondary-color;
+    background-color: $primary-color;
     bottom: 0;
     position: fixed;
 }

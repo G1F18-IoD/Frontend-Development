@@ -1,8 +1,11 @@
+// Import variables from styles.scss:
+@import "../../../../../styles.scss";
+
 header {
     width: 100%;
     height: 65px;
-    background-color: #4F4D53;
-    border-bottom: 5px solid #E8BE02;
+    background-color: $primary-color;
+    border-bottom: 5px solid $secondary-color;
 }
 
 .header-menubar {

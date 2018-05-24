@@ -1,3 +1,6 @@
+// Import variables from styles.scss:
+@import "../../../../../../../styles.scss";
+
 .dashboard-grid{
     grid-template-columns: 1fr 1fr;
     justify-content: space-evenly;
@@ -17,7 +20,7 @@
 
 .controls-container {
     width: 400px;
-    border: 1px solid gray;
+    border: 1px solid $tertiary-color;
     padding: 10px;
 }
 
@@ -48,7 +51,7 @@
     margin: 0 auto;
     margin-bottom: 10px;
     background-color: black;
-    border: 1px solid gray;
+    border: 1px solid $tertiary-color;
     border-radius: 4px;
 }
 

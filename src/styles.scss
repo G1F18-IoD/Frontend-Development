@@ -1,10 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+/*
+*   Table of contents:
+*
+*   I.      global variables
+*   II.     Ease of use
+*   III.    Standard formatting
+*   IV.     Tables
+*   V.      Scrollbar
+*/
 
+/* I. global variables */
 $primary-color: #4F4D53;
 $secondary-color: #E8BE02;
 $tertiary-color: lightslategray;
 
-/* ease of use */
+/* II. ease of use */
 .center-div {
     margin: 0 auto;
 }
@@ -45,7 +55,7 @@ $tertiary-color: lightslategray;
     text-align: right;
 }
 
-/* standard formatting */
+/* III. standard formatting */
 .form-input {
     width: 100%;
     height: 35px;
@@ -126,7 +136,7 @@ $tertiary-color: lightslategray;
     }
 }
 
-/* tables */
+/* IV. tables */
 table {
     font-size: 11px;
 }
@@ -147,7 +157,7 @@ table {
     font-size: 11px;
 }
 
-/* scrollbar */
+/* V. scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
 }
