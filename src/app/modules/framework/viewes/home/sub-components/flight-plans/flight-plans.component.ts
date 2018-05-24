@@ -7,12 +7,17 @@ import { HttpReqsService } from '../../../../framework-export-barrel';
   templateUrl: './flight-plans.component.html',
   styleUrls: ['./flight-plans.component.scss']
 })
+/*
+* FlightPlansComponent is a dashboard view component, with the purpose of showing the user
+* all registered flightplans and allowing the user to create new ones.
+*/
 export class FlightPlansComponent implements OnInit {
 
   public error;
   public headers = ['flightplan ID', 'name', 'author ID', 'created']
   public flightplans;
   public showAddFlightplanBox = false;
+  public possibleCommands;
 
   // New flightplan controls
   public newFlightplanName = "";
@@ -25,9 +30,14 @@ export class FlightPlansComponent implements OnInit {
 
   ngOnInit() {
     this.getFlightplans();
+    this.getCommands();
     this.getFlightplanSettings();
   }
 
+  /*
+  * getFlightplans() retrieves flightplans from the backend, so that they can be shown in the HTML.
+  * Dates are formatted from Unix time.
+  */
   private getFlightplans() {
     let reqOption: HttpDefined = {
       requestResource: 'api/flightplan',
@@ -35,7 +45,6 @@ export class FlightPlansComponent implements OnInit {
       statusCode: [200]
     };
     this.httpReqs.sendGetRequest(reqOption).subscribe((data) => {
-
       this.flightplans = data;
       this.formatFlightplanDates(this.flightplans);
 
@@ -44,6 +53,28 @@ export class FlightPlansComponent implements OnInit {
     });
   }
 
+  /*
+  * getCommands() retrieves possible commands from the backend.
+  * These commands are used when a new flightplan is being added, to prevent the user
+  * from adding disallowed or unknown commands.
+  */
+  private getCommands() {
+    let reqOption: HttpDefined = {
+      requestResource: 'api/command/',
+      data: {},
+      statusCode: [200]
+    };
+    this.httpReqs.sendGetRequest(reqOption).subscribe((data) => {
+      this.possibleCommands = data;
+
+    }, error => {
+      this.error = error;
+    });
+  }
+
+  /*
+  * formatFlightplanDates() formats UNIX timestamps into readable dates from a given flightplan.
+  */
   private formatFlightplanDates(_flightplans) {
     Object.keys(_flightplans).forEach(key => {
 
@@ -68,6 +99,10 @@ export class FlightPlansComponent implements OnInit {
     });
   }
 
+  /*
+  * getFlightplanSettings() gets possible settings from the backend,
+  * such as max number of allowed commands.
+  */
   private getFlightplanSettings() {
     let reqOption: HttpDefined = {
       requestResource: 'api/flightplan/settings',
@@ -86,6 +121,10 @@ export class FlightPlansComponent implements OnInit {
     });
   }
 
+  /*
+  * setNewFlightplanCommandsAmount() sets the selected amount of commands, 
+  * when adding a new flightplan.
+  */
   public setNewFlightplanCommandsAmount() {
     if (this.commandAmountToAdd !== null) {
       let addAmount = this.commandAmountToAdd;
@@ -105,6 +144,10 @@ export class FlightPlansComponent implements OnInit {
     }
   }
 
+  /*
+  * showHideAddFlightplanBox() resets input entered when adding a new flightplan,
+  * and either hides or shows the "add flightplan" box.
+  */
   public showHideAddFlightplanBox() {
     // Reset inputs, etc.
     this.newFlightplanName = "";
@@ -116,6 +159,10 @@ export class FlightPlansComponent implements OnInit {
     this.showAddFlightplanBox = !this.showAddFlightplanBox;
   }
 
+  /*
+  * checkCommandInput() ensures that the user does not exceed the maximum allowed number of commands,
+  * when adding a new flightplan.
+  */
   public checkCommandInput() {
     setTimeout(() => {
       if (this.commandAmountToAdd <= 0) {
@@ -126,6 +173,10 @@ export class FlightPlansComponent implements OnInit {
     });
   }
 
+  /*
+  * createNewFlightplan() sends a POST request to the server, telling it that a new flightplan has been made.
+  * It also initiates "addCommandToNewFlightplan()".
+  */
   public createNewFlightplan() {
     if (this.newFlightplanName != null && this.newFlightplanName != "") {
       let reqOption: HttpDefined = {
@@ -135,7 +186,6 @@ export class FlightPlansComponent implements OnInit {
       };
 
       this.httpReqs.sendPostRequest(reqOption).subscribe((data) => {
-        this.getFlightplans();
         this.addCommandToNewFlightplan(data['rowId'])
       }, error => {
         this.error = error;
@@ -143,23 +193,37 @@ export class FlightPlansComponent implements OnInit {
     }
   }
 
+  /*
+  * addCommandToNewFlightplan() takes a flightplan id as a parameter.
+  * It then adds all entered commands to said flightplan, one by one.
+  * Lastly, it calls getFlightplans() to refresh the table data and then hides the flightplan box.
+  */
   private addCommandToNewFlightplan(_flightplan_id) {
     Object.keys(this.newFlightplanCommands).forEach(key => {
-      let paramString = this.newFlightplanCommands[key]['params'];
-      let parameters = paramString.split(" ");
+      setTimeout(() => {
+        let paramString = this.newFlightplanCommands[key]['params'];
+        let params = paramString.split("-");
 
-      let reqOption: HttpDefined = {
-        requestResource: 'api/flightplan/cmd/' + _flightplan_id,
-        data: { cmd: this.newFlightplanCommands[key].cmd, message: this.newFlightplanCommands[key].message, params: parameters, order: key },
-        statusCode: [200]
-      };
+        for (let i = 0; i < params.length; i++) {
+          params[i] = parseFloat(params[i]);
+        }
 
-      this.httpReqs.sendPostRequest(reqOption).subscribe((data) => {
+        let reqOption: HttpDefined = {
+          requestResource: 'api/flightplan/cmd/' + _flightplan_id,
+          data: { cmd: this.newFlightplanCommands[key].cmd, message: this.newFlightplanCommands[key].message, parameters: params, order: parseFloat(key) },
+          statusCode: [200]
+        };
 
-      }, error => {
-        this.error = error;
-      });
+        this.httpReqs.sendPostRequest(reqOption).subscribe((data) => {
+
+        }, error => {
+          this.error = error;
+        });
+      }, 800);
     });
+
+    this.getFlightplans();
+    this.showHideAddFlightplanBox();
   }
 
 }

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
+/*
+* CommonFunctionsService contains global functions for ease of use operations, to minimize code duplication.
+*/
 export class CommonFunctionsService {
 
   constructor() { }

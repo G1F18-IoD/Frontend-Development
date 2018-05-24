@@ -112,6 +112,12 @@ export class FlightControlComponent implements OnInit {
     }
   }
 
+  /*
+  * executeFlightPlan() takes the name of a flightplan as a parameter.
+  * This flightplan is then executed via the rpiconnection service.
+  * If the call goes through, "SUCCESS" is posted to the console.
+  * If not, an error is posted.
+  */
   private executeFlightPlan(_flightplan) { // Priority is hardcoded to 1 until further setup
     this.rpicon.executeFlightplanOnDrone(_flightplan, 1).subscribe((data) => {
       this.commands.push("SUCCESS - " + _flightplan + " now running");

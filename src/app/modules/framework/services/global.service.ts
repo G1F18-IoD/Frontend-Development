@@ -3,10 +3,17 @@ import { Router } from '@angular/router';
 import { JwtTokenPayload, HttpDefined } from '../framework-export-barrel';
 
 @Injectable()
+/*
+* GlobalService is used to get global information about the system from anywhere.
+*/
 export class GlobalService {
 
   constructor(private router: Router) { }
 
+  /*
+  * If the user is logged in and a token is generated,
+  * getToken() returns this token.
+  */
   public getToken(): JwtTokenPayload {
     if (this.isAuth()) {
       let token = localStorage.getItem('jwttoken');
@@ -17,6 +24,10 @@ export class GlobalService {
     }
   }
 
+  /*
+  * isAuth() checks whether the user is logged in or not,
+  * to prevent running methods that require login.
+  */
   public isAuth(): boolean {
     let token = localStorage.getItem('jwttoken');
     if (token) {
@@ -31,10 +42,9 @@ export class GlobalService {
     }
   }
 
-  public getObjectKeys(_object) {
-    return Object.keys(_object);
-  }
-
+  /*
+  * routeTo() simply navigates to a given route.
+  */
   public routeTo(routeArgs: Array<any>): void {
 
     this.router.navigate(routeArgs);

@@ -63,13 +63,15 @@
           <div></div>
 
           <label>Cmd</label>
-          <input class="form-sub-input" type="text" [(ngModel)]="newFlightplanCommands[i].cmd">
+          <select class="form-sub-input" [(ngModel)]="newFlightplanCommands[i].cmd">
+            <option *ngFor="let command of possibleCommands">{{command}}</option>
+          </select>
 
           <label>Message</label>
           <input class="form-sub-input" type="text" [(ngModel)]="newFlightplanCommands[i].message">
 
           <label>Params</label>
-          <input class="form-sub-input" type="text" placeholder="Separate parameters with space" [(ngModel)]="newFlightplanCommands[i].params">
+          <input class="form-sub-input" type="text" placeholder="Separate parameters with a dash" [(ngModel)]="newFlightplanCommands[i].params">
         </div>
       </ng-template>
 

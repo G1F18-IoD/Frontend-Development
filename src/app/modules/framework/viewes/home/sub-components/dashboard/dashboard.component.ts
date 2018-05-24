@@ -8,6 +8,11 @@ import { RpiconnectionService } from '../../../../services/rpiconnection.service
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
+/*
+* The dashboard component is the primary view of the home screen.
+* It shows a menu, containing each of the possible options the user has when logged in.
+* It also shows a connection bar, allowing the user to know whether a drone is connected or not.
+*/
 export class DashboardComponent implements OnInit {
 
   public buttonRowHeaders = ['flight-control', 'drones', 'flightplans', 'logs'];
@@ -35,6 +40,9 @@ export class DashboardComponent implements OnInit {
     this.initializeConnectionBar();
   }
 
+  /*
+  * initializeConnectionBar() makes sure that the connection bar is aware, if a drone is connected upon login.
+  */
   private initializeConnectionBar() {
     let connections;
 
@@ -51,10 +59,17 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  /*
+  * setState() sets the currently selected tab.
+  */
   public setState(_state) {
     this.state = _state;
   }
 
+  /*
+  * disconnectDrone() disconnects a drone via the rpiconnection service and subsequently changes the info
+  * shown in the connection bar.
+  */
   public disconnectDrone() {
     this.rpicon.disconnectFromDrone().subscribe(() => {
     }, error => {
