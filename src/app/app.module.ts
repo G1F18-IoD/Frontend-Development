@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { FrameworkModule } from './modules/framework/framework.module';
-import { ChrisNorwegianStatesModule } from './modules/chris-norwegian-states/chris-norwegian-states.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +17,6 @@ import { ChrisNorwegianStatesModule } from './modules/chris-norwegian-states/chr
     BrowserModule,
     FrameworkModule,
     HttpClientModule,
-    ChrisNorwegianStatesModule,
     AppRoutingModule
   ],
   providers: [],
