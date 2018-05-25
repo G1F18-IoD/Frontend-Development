@@ -8,7 +8,7 @@ import { AuthenticationService } from './modules/framework/services/authenticati
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthenticationService] },
-  { path: 'register', component: UserRegistrationComponent },
+  //{ path: 'register', component: UserRegistrationComponent },
   { path: 'login', component: UserLoginComponent },
 
   { path: '**', component: UserLoginComponent }
