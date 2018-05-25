@@ -7,6 +7,9 @@ import { HttpDefined, HttpReqsService, AuthenticationService } from '../../frame
   templateUrl: './user-registration.component.html',
   styleUrls: ['./user-registration.component.scss']
 })
+/*
+* Obsolete component. Ignore.
+*/
 export class UserRegistrationComponent implements OnInit {
 
   public username;
